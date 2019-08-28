@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% extends 'shop/base.html' %}
+{% load staticfiles%}
+{% block container_block %}
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Thanks for visiting .. </h1>
+          <p >We are very sad because you have logout...</p>
+          <h3>Please login again</h3>
+            <a href="/accounts/login" class="btn btn-success btn-lg" >Login</a>
+      </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+{% block container_block %}
+
+<style>
+div.product-detail {
+
+padding: 25px;
+border:2px solid green;
+  margin: 50px 50px 100px 100px;
+
+}
+
+div.right-side{
+  margin: -225px 100px 100px 220px;
+}
+</style>
+
+<div class="container">
+
+ <div class="row">
+
+   <div class="col-lg-3">
+
+     <h2 class="my-4">Category</h2>
+     <div class="list-group">
+
+
+    <a {% if not category %}class="selected list-group-item"{% endif %} href="{% url "shop:product_list" %}">All</a>
+
+      {% for c in categories %}
+       <a {% if category.slug == c.slug %}class="selected "{% endif %} href="{{ c.get_absolute_url }}" class="list-group-item">{{ c.name }}</a>
+
+        {% endfor %}
+
+
+     </div>
+
+   </div>
+   <!-- /.col-lg-3 -->
+
+   <div class="col-lg-9">
+
+     <div class="row">
+       {% if category %}{{ category.name }}{% else %}{% endif %}
+
+       <div class="product-detail">
+<img src="{% if product.image %}{{ product.image.url }}{% else %}
+{% static "img/no_image.png" %}{% endif %}"   height="250" width="190">
+<div class="right-side">
+<h1>{{ product.name }}</h1>
+<h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
+<p class="price">Rs.{{ product.price }}</p>
+{{ product.description|linebreaks }} <br>
+<p class="price">Rs.{{ product.price }}</p>
+<form action="{% url "cart:cart_add" product.id %}" method="post">
+ {{ cart_product_form }}
+ {% csrf_token %}
+
+ <input type="submit" class=" btn btn-outline-info btn-sm " value="Add to cart">
+</form>
+</div>
+</div>
+
+
+
+     </div>
+     <!-- /.row -->
+
+   </div>
+   <!-- /.col-lg-9 -->
+
+ </div>
+ <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+
+
+{% endblock %}

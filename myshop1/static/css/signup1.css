@@ -1,0 +1,118 @@
+body
+{
+  margin: 0;
+  padding: 0;
+  background-image:
+  url(https://images.unsplash.com/photo-1474533883693-59a44dbb964e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60);
+  background-size: cover;
+  font-family: sans-serif;
+  background-repeat: no-repeat;
+
+}
+.loginBox
+{
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 380px;
+  height: 480px;
+  box-sizing: border-box;
+  background:  #6b6b47;
+  padding: 50px 40px;
+}
+
+.user
+{
+  width: 100px;
+  height: 100px;
+  border-radius: 60%;
+  overflow: hidden;
+  position: absolute;
+  top: calc(-100px/2);
+  left: calc(50% - 50px);
+
+}
+
+h2
+{
+  margin-top: 5px;
+  padding: 10 10 20px;
+  color:  #33ffff;
+  text-align: center;
+}
+
+.loginBox p
+{
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  color: #fff;
+}
+
+label[for=id_username] {
+	cursor: pointer;
+	color:  #ffd11a;
+
+}
+
+label[for=id_email] {
+	cursor: pointer;
+	color: #ffd11a;
+
+}
+
+
+label[for=id_password] {
+	cursor: pointer;
+	color: #ffd11a;
+
+}
+
+.loginBox input{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.loginBox input[type="text"],
+.loginBox input[type="email"],
+
+.loginBox input[type="password"]
+{
+  border: None;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: None;
+  height: 40px;
+  color: #fff;
+  font-size: 17px;
+}
+::placeholder{
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.loginBox input[type="submit"]
+{
+  border: None;
+  outline: None;
+  height: 40px;
+  color: #fff;
+  font-size: 17px;
+  background: #ff267e;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.loginBox input[type="submit"]:hover
+{
+background: #efed40;
+color: #262626;
+}
+.loginBox a
+{
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  align-content: center;
+}

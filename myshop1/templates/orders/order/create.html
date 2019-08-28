@@ -1,0 +1,86 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% block title %}
+ Checkout
+{% endblock %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+{% block container_block %}
+<style media="screen">
+  div.list-group{
+    margin: 25px 50px 75px 100px;
+    background-color: lightblue;
+  }
+
+  div.order-info{
+
+    margin: 70px 0px 75px 0px;
+
+  }
+</style>
+
+<div class=" container-fluid">
+
+ <div class="row ">
+
+   <div class="col-12 col-md-9">
+
+     <h2 align="center">Checkout Page</h2>
+     <div class="list-group">
+
+       <form method="post" novalidate>
+  {% csrf_token %}
+  {% include 'base_form.html' with form=form %}
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+     </div>
+
+   </div>
+   <!-- /.col-lg-3 -->
+
+   <div class="col-12 col-md-3">
+
+
+        <div class="order-info">
+          <div class="jumbotron">
+            <h1 class="display-4">Your order</h1>
+            <ul>
+             {% for item in cart %}
+             <li>
+             {{ item.quantity }}x {{ item.product.name }}
+             <span>Rs.{{ item.total_price }}</span>
+             </li>
+
+             {% endfor %}
+             {% if cart.coupon %}
+             <li>
+             "{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off)
+             <span>- Rs.{{ cart.get_discount|floatformat:"2" }}</span>
+             </li>
+             {% endif %}
+            </ul>
+
+            <p>Total: Rs.{{ cart.get_total_price_after_discount|floatformat:"2" }}</p>
+          </div>
+
+        </div>
+
+
+     
+     <!-- /.row -->
+
+   </div>
+   <!-- /.col-lg-9 -->
+
+ </div>
+ <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+
+
+{% endblock %}

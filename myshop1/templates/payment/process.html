@@ -1,0 +1,28 @@
+{% extends "shop/base.html" %}
+{% load staticfiles%}
+{% block title %}Pay using PayPal{% endblock %}
+
+{% block container_block %}
+<style media="screen">
+
+div.jumbotron{
+  margin:100px 100px 200px 200px;
+
+}
+
+</style>
+
+<div class=" container-fluid">
+ <!-- /.col-lg-3 -->
+          <div class="jumbotron">
+            <h1>Pay using PayPal</h1>
+            {{ form.render }}
+
+              </div>
+
+     <!-- /.row -->   <!-- /.col-lg-9 -->
+ <!-- /.row -->
+
+</div>
+<!-- /.container -->
+{% endblock %}

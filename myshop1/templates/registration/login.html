@@ -1,0 +1,24 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+{% block title %}Log-in{% endblock %}
+{% block container_block %}
+<style media="screen">
+
+div.jumbotron{
+  margin:100px 100px 200px 200px;
+
+}
+
+</style>
+
+ <div class="login-form" align='center'>
+   <h1>Please Log-in to continue your Shopping</h1>
+ <form method="post">
+ {{ form.as_p }}
+ {% csrf_token %}
+ <input type="hidden" name="next" value="{{ next }}" />
+ <p><input type="submit" value="Log-in"></p>
+ <strong style="color:powderblue;">Need An Account?</strong> &nbsp<a href="/signup">Sign Up</a>
+ </form>
+ </div>
+{% endblock %}

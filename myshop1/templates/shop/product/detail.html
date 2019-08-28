@@ -1,0 +1,75 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+{% block container_block %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+div.product-detail {
+padding: 0px 0px 0px 0px;
+  margin: 50px 50px 100px 100px;
+  border:2px solid dark;
+
+}
+
+div.right-side{
+  margin: -285px 50px 30px 220px;
+  padding: 0px 0px 70px 50px;
+
+}
+</style>
+
+
+
+
+<div class="container">
+
+ <div class="row">
+
+<div class="col-12 col-md-3">
+     <h2 class="my-4">Category</h2>
+     <div class="list-group">
+
+
+    <a {% if not category %}class="selected list-group-item"{% endif %} href="{% url "shop:product_list" %}">All</a>
+
+      {% for c in categories %}
+       <a {% if category.slug == c.slug %}class="selected "{% endif %} href="{{ c.get_absolute_url }}" class="list-group-item">{{ c.name }}</a>
+
+        {% endfor %}
+
+
+     </div>
+
+   </div>
+   <!-- /.col-lg-3 -->
+
+<div class="col-12 col-md-9">
+       <div class="product-detail">
+         <h1>Product detail</h1><hr>
+<img src="{% if product.image %}{{ product.image.url }}{% else %}
+{% static "img/no_image.png" %}{% endif %}"   height="300" width="230">
+<div class="right-side">
+<h1>{{ product.name }}</h1>
+<h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
+<p class="price">Rs.{{ product.price }}</p>
+{{ product.description|linebreaks }} <br>
+<p class="price">Rs.{{ product.price }}</p>
+<form action="{% url "cart:cart_add" product.id %}" method="post">
+ {{ cart_product_form }}
+ {% csrf_token %}
+
+ <input type="submit" class=" btn btn-outline-info btn-sm " value="Add to cart">
+</form>
+</div>
+</div>
+     <!-- /.row -->
+
+   </div>
+   <!-- /.col-lg-9 -->
+ <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+{% endblock %}
